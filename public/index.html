@@ -76,7 +76,7 @@
         document.getElementById('copyButton').addEventListener('click', async () => {
             try {
                 const clipboardText = await navigator.clipboard.readText();
-                const response = await fetch('/api/copy', {
+                const response = await fetch('/copy', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

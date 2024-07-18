@@ -11,7 +11,7 @@
     <a href="/">Back</a>
     <script>
         async function fetchCopiedContent() {
-            const response = await fetch('/api/note');
+            const response = await fetch('/note');
             const data = await response.json();
             document.getElementById('content').innerText = data.content;
         }
