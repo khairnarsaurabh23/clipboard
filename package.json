@@ -1,21 +1,14 @@
 {
   "name": "clipboard-note-app",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "A simple app to copy and view clipboard content",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "vercel-build": "echo 'Build step not needed' && exit 0"
   },
-  "keywords": [],
-  "author": "Saurabh",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.19.2",
-    "nodemon": "^3.1.4"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "serverless-http": "^2.7.0"
   }
 }

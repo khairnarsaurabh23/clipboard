@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,5 +55,42 @@
     </script>
     <a href="/note">View Copied Content</a>
 </body>
+</html> -->
 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Note App</title>
+</head>
+<body>
+    <h1>Clipboard Note App</h1>
+    <button id="copyButton">Copy Clipboard Content</button>
+    <p id="status"></p>
+    <script>
+        document.getElementById('copyButton').addEventListener('click', async () => {
+            try {
+                const clipboardText = await navigator.clipboard.readText();
+                const response = await fetch('/api/copy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ clipboardData: clipboardText })
+                });
+                const result = await response.text();
+                document.getElementById('status').innerText = result;
+            } catch (err) {
+                document.getElementById('status').innerText = 'Failed to copy clipboard content. Try running this page in a secure context (HTTPS) and ensure Clipboard API support.';
+                console.error('Failed to copy clipboard content', err);
+            }
+        });
+    </script>
+    <a href="note.html">View Copied Content</a>
+</body>
 </html>

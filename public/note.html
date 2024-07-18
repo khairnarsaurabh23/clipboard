@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copied Content</title>
+</head>
+<body>
+    <h1>Copied Content</h1>
+    <pre id="content"></pre>
+    <a href="/">Back</a>
+    <script>
+        async function fetchCopiedContent() {
+            const response = await fetch('/api/note');
+            const data = await response.json();
+            document.getElementById('content').innerText = data.content;
+        }
+        fetchCopiedContent();
+    </script>
+</body>
+</html>
