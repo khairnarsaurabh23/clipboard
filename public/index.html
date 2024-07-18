@@ -24,7 +24,7 @@
                 .readText()
                 .then(async (clipText) => {
                     // destination.innerText = clipText;
-                    const response = await fetch('/copy', {
+                    const response = await fetch('https://cpbrd.vercel.app/copy', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
