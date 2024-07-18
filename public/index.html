@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Note App</title>
+</head>
+
+<body>
+    <h1>Clipboard Note App</h1>
+    <button id="copyButton">Copy Clipboard Content</button>
+    <p id="status"></p>
+    <script>
+        const destination = document.getElementById("copyButton");
+        destination.addEventListener("click", () => {
+            if (!navigator.clipboard) {
+                throw new Error('Clipboard API not available');
+            }
+            else {
+                console.log(navigator.clipboard)
+            }
+            navigator.clipboard
+                .readText()
+                .then(async (clipText) => {
+                    // destination.innerText = clipText;
+                    const response = await fetch('/copy', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ clipboardData: clipText })
+                    });
+                    const result = await response.text();
+                    document.getElementById('status').innerText = result;
+                });
+        });
+        // document.getElementById('copyButton').addEventListener('click', async () => {
+        //     try {
+        //         const clipboardText = await navigator.clipboard.readText();
+        //         const response = await fetch('/copy', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify({ clipboardData: clipboardText })
+        //         });
+        //         const result = await response.text();
+        //         document.getElementById('status').innerText = result;
+        //     } catch (err) {
+        //         document.getElementById('status').innerText = err;
+        //         console.error('Failed to copy clipboard content', err);
+        //     }
+        // });
+    </script>
+    <a href="/note">View Copied Content</a>
+</body>
+
+</html>
